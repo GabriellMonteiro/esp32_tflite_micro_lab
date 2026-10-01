@@ -6,11 +6,12 @@ Com a etapa anterior concluída, na raiz do projeto e dentro do Dev Container ex
 ./scripts/importar-hello-world.sh
 ```
 
-O script faz três operações visíveis:
+O script faz quatro operações visíveis:
 
 1. Executa `idf.py add-dependency "esp-tflite-micro"`.
-2. Guarda o firmware e o CMake da etapa 2 com o sufixo `.etapa-2`.
-3. Copia para `main/` os arquivos do exemplo oficial `hello_world`.
+2. Executa `idf.py reconfigure` para baixar a dependência em `managed_components/`.
+3. Guarda o firmware e o CMake da etapa 2 com o sufixo `.etapa-2`.
+4. Copia para `main/` os arquivos do exemplo oficial `hello_world`.
 
 A dependência é baixada em `managed_components/`; ela não deve entrar no Git.
 

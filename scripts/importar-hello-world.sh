@@ -11,8 +11,13 @@ if [[ -f main/main.cc || -f main/main.c ]]; then
   exit 1
 fi
 
-echo "1/3: adicionando esp-tflite-micro pelo ESP-IDF Component Manager..."
+echo "1/4: adicionando esp-tflite-micro pelo ESP-IDF Component Manager..."
 idf.py add-dependency "esp-tflite-micro"
+
+echo "2/4: baixando a dependencia e os exemplos oficiais..."
+# O add-dependency apenas atualiza o manifesto. A reconfiguracao resolve e baixa
+# o componente para managed_components/, onde o exemplo hello_world fica disponivel.
+idf.py reconfigure
 
 component_dir="managed_components/espressif__esp-tflite-micro"
 example_dir="$component_dir/examples/hello_world/main"
@@ -23,12 +28,11 @@ if [[ ! -d "$example_dir" ]]; then
   exit 1
 fi
 
-echo "2/3: preservando o firmware minimo como referencia..."
+echo "3/4: preservando o firmware minimo como referencia..."
 mv main/placeholder.cc main/placeholder.cc.etapa-2
 mv main/CMakeLists.txt main/CMakeLists.txt.etapa-2
 
-echo "3/3: copiando o Hello World oficial para main/..."
+echo "4/4: copiando o Hello World oficial para main/..."
 cp -a "$example_dir/." main/
 
 echo "Importacao concluida. Agora execute: idf.py set-target esp32s3 && idf.py build"
-
