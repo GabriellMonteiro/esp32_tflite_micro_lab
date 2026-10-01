@@ -20,9 +20,10 @@ recebe um número programaticamente; não há sensor físico nesta etapa.
 ## Ajuste específico do Wokwi
 
 O componente atual do `esp-tflite-micro` habilita ESP-NN diretamente no seu
-`CMakeLists.txt`. Como essas otimizações não são simuladas pelo Wokwi, o script
-de importação comenta essa opção no componente baixado e preserva os kernels de
-referência do TFLite Micro.
+`CMakeLists.txt`. Como essas otimizações não são simuladas pelo Wokwi, o
+`main/CMakeLists.txt` adiciona a opção `-UESP_NN` após a definição da biblioteca.
+Assim, o componente gerenciado não precisa ser alterado e o TFLite Micro usa os
+kernels de referência.
 
 ## Resultado esperado
 
