@@ -25,11 +25,17 @@ idf.py reconfigure
 
 component_dir="managed_components/espressif__esp-tflite-micro"
 example_dir="$component_dir/examples/hello_world/main"
+tflite_cmake="$component_dir/CMakeLists.txt"
 
 if [[ ! -d "$example_dir" ]]; then
   echo "Exemplo oficial nao encontrado em $example_dir." >&2
   echo "Confira se a dependencia foi baixada corretamente." >&2
   exit 1
+fi
+
+if grep -qE '^[[:space:]]*target_compile_options\(\$\{COMPONENT_LIB\} PRIVATE -DESP_NN\)' "$tflite_cmake"; then
+  echo "Desabilitando ESP-NN para compatibilidade com o Wokwi..."
+  sed -i '/target_compile_options.*-DESP_NN/s/^/# /' "$tflite_cmake"
 fi
 
 echo "3/4: preservando o firmware minimo como referencia..."

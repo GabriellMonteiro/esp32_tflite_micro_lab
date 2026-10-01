@@ -19,9 +19,10 @@ recebe um número programaticamente; não há sensor físico nesta etapa.
 
 ## Ajuste específico do Wokwi
 
-O arquivo `sdkconfig.defaults` desabilita `ESP-NN`. Essas otimizações não são
-simuladas pelo Wokwi, portanto o laboratório usa os kernels de referência do
-TFLite Micro. Mantenha esse arquivo no projeto.
+O componente atual do `esp-tflite-micro` habilita ESP-NN diretamente no seu
+`CMakeLists.txt`. Como essas otimizações não são simuladas pelo Wokwi, o script
+de importação comenta essa opção no componente baixado e preserva os kernels de
+referência do TFLite Micro.
 
 ## Resultado esperado
 
