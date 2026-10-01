@@ -12,7 +12,11 @@ if [[ -f main/main.cc || -f main/main.c ]]; then
 fi
 
 echo "1/4: adicionando esp-tflite-micro pelo ESP-IDF Component Manager..."
-idf.py add-dependency "esp-tflite-micro"
+if [[ -f main/idf_component.yml ]] && grep -qE '^[[:space:]]+espressif/esp-tflite-micro:' main/idf_component.yml; then
+  echo "Dependencia ja registrada no manifesto; mantendo a configuracao existente."
+else
+  idf.py add-dependency "esp-tflite-micro"
+fi
 
 echo "2/4: baixando a dependencia e os exemplos oficiais..."
 # O add-dependency apenas atualiza o manifesto. A reconfiguracao resolve e baixa
