@@ -13,6 +13,5 @@
     }
   },
   "remoteUser": "root",
-  "postCreateCommand": "idf.py --version"
+  "postCreateCommand": "bash -lc '. /opt/esp/idf/export.sh && idf.py --version'"
 }
-
