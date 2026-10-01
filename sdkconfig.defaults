@@ -1,0 +1,2 @@
+# O Wokwi nao simula as otimizacoes ESP-NN; use os kernels de referencia.
+CONFIG_ESP_TFLITE_MICRO_USE_ESP_NN=n

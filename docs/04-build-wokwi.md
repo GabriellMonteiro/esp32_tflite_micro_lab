@@ -17,6 +17,12 @@ O arquivo `wokwi.toml` aponta para:
 O `diagram.json` tem apenas o ESP32-S3 e o monitor serial porque o Hello World
 recebe um número programaticamente; não há sensor físico nesta etapa.
 
+## Ajuste específico do Wokwi
+
+O arquivo `sdkconfig.defaults` desabilita `ESP-NN`. Essas otimizações não são
+simuladas pelo Wokwi, portanto o laboratório usa os kernels de referência do
+TFLite Micro. Mantenha esse arquivo no projeto.
+
 ## Resultado esperado
 
 O texto exato varia entre versões do exemplo, mas a saída deve repetir pares como:
